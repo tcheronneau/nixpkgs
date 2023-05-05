@@ -4,6 +4,7 @@
 , fetchpatch
 , autoreconfHook
 , perl
+, nixosTests
 , withDebug ? false
 }:
 
