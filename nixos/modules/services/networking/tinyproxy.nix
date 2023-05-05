@@ -5,6 +5,7 @@ with lib;
 let
   cfg = config.services.tinyproxy;
   mkValueStringTinyproxy = with lib; v:
+<<<<<<< HEAD
         if true  ==         v then "yes"
         else if false ==    v then "no"
         else generators.mkValueStringDefault {} v;
@@ -16,6 +17,15 @@ let
 
   settingsFormat = (pkgs.formats.keyValue {
       mkKeyValue = mkKeyValueTinyproxy {
+=======
+        if true  ==   v then "yes"
+        else if false ==   v then "no"
+        else generators.mkValueStringDefault {} v;
+
+  # dont use the "=" operator
+  settingsFormat = (pkgs.formats.keyValue {
+      mkKeyValue = lib.generators.mkKeyValueDefault {
+>>>>>>> 7a5de09c3da529a5680317e795ffd3a904662096
         mkValueString = mkValueStringTinyproxy;
       } " ";
       listsAsDuplicateKeys= true;
@@ -27,7 +37,15 @@ in
     options = {
       services.tinyproxy = {
         enable = mkEnableOption (lib.mdDoc "Tinyproxy daemon");
+<<<<<<< HEAD
         package = mkPackageOptionMD pkgs "tinyproxy" {}; 
+=======
+        package = mkOption {
+          description = lib.mdDoc "Tinyproxy package to use.";
+          default = pkgs.tinyproxy;
+          type = types.package;
+        };
+>>>>>>> 7a5de09c3da529a5680317e795ffd3a904662096
         settings = mkOption {
           description = lib.mdDoc "Configuration for [tinyproxy](https://tinyproxy.github.io/).";
           default = { };
@@ -36,8 +54,13 @@ in
             Listen 127.0.0.1;
             Timeout 600;
             Allow 127.0.0.1;
+<<<<<<< HEAD
             Anonymous = ['"Host"' '"Authorization"'];
             ReversePath = '"/example/" "http://www.example.com/"';
+=======
+            Anonymous = [''"Host"'' ''"Authorization"''];
+            ReversePath = ''"/example/" "http://www.example.com/"'';
+>>>>>>> 7a5de09c3da529a5680317e795ffd3a904662096
           }'';
           type = types.submodule ({name, ...}: {
             freeformType = settingsFormat.type;
