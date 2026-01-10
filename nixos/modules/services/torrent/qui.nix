@@ -29,7 +29,7 @@ in
       };
       sessionSecretPath = lib.mkOption {
         type = lib.types.nullOr lib.types.str;
-        description = lib.mdDoc "Path to file containing secret";
+        description = "Path to file containing secret";
         default = null;
       };
 
@@ -40,23 +40,23 @@ in
           options = {
             host = mkOption {
               type = types.nullOr types.str;
-              description = lib.mdDoc "Listen address";
+              description = "Address to bind";
               default = "localhost";
             };
             port = mkOption {
               type = types.nullOr types.int;
-              description = lib.mdDoc "Port to bind";
+              description = "Port to bind";
               default = 7476;
             };
             dataDir = mkOption {
               type = types.nullOr types.str;
-              description = lib.mdDoc "The directory where data is stored";
+              description = "The directory where data is stored";
               default = cfg.dataDir;
             };
           };
         };
         default = {};
-        description = lib.mdDoc "Qui configuration, see <https://getqui.com/docs/intro> for reference.";
+        description = "Qui configuration, see <https://getqui.com/docs/intro> for reference.";
       };
 
       user = lib.mkOption {
